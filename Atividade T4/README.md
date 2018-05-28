@@ -20,4 +20,3 @@ Activity requirements:
       - https://servidor/report/    - GET
       - https://servidor/report/1   - GET
   7. Extra feature. | **TODO**
-  8. Load from JSON database | **TODO**
