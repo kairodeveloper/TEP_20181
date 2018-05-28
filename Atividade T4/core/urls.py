@@ -13,7 +13,8 @@ urlpatterns = [
             path('posts/<int:id_post>/comments/', CommentList),
             path('posts/<int:id_post>/comments/<int:id_comment>/', CommentDetail),
     ])),
-    path('servidor/report/', ReportDetailList)
+    path('servidor/report/', ReportAllList),
+    path('servidor/report/<int:id>', ReportDetailList)
 ]
 
 

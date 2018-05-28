@@ -157,6 +157,9 @@ def CommentList(request, id, id_post):
 
             return Response(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+        else:
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
     return Response(status=status.HTTP_404_NOT_FOUND)
 
 
@@ -193,8 +196,25 @@ def CommentDetail(request, id, id_post, id_comment):
     return Response(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['GET'])
-def ReportDetailList(request):
+def ReportAllList(request):
     if request.method == 'GET':
         users = User.objects.all()
         user_serializer = ReportAllUserSerializer(users, many=True)
         return Response(user_serializer.data)
+    else:
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(['GET'])
+def ReportDetailList(request, id):
+
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        user_serializer = ReportAllUserSerializer(user)
+        return Response(user_serializer.data)
+    else:
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+

@@ -51,9 +51,6 @@ class PostByUserSerializer(serializers.HyperlinkedModelSerializer):
 
 class ReportAllUserSerializer(serializers.HyperlinkedModelSerializer):
 
-    def count_comments(self, user_id):
-        return
-
     class Meta:
         model = User
         fields = ('id','name','qtd_posts','qtd_comments_by_post')
